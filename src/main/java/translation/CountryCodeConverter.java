@@ -22,7 +22,7 @@ public class CountryCodeConverter {
      * in the resources folder.
      */
     public CountryCodeConverter() {
-            this("country-codes.txt");
+        this("country-codes.txt");
     }
 
     /**
@@ -57,8 +57,7 @@ public class CountryCodeConverter {
      * @return the name of the country corresponding to the code
      */
     public String fromCountryCode(String code) {
-        String country =  countryCodeToCountry.get(code);
-        return country;
+        return countryCodeToCountry.get(code);
     }
 
     /**
