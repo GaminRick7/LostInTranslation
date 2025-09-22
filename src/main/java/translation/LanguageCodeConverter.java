@@ -35,7 +35,6 @@ public class LanguageCodeConverter {
      * @throws RuntimeException if the resources file can't be loaded properly
      */
     public LanguageCodeConverter(String filename) {
-
         try {
             List<String> lines = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
@@ -43,8 +42,9 @@ public class LanguageCodeConverter {
             Iterator<String> iterator = lines.iterator();
             iterator.next(); // skip the first line
             while (iterator.hasNext()) {
-                String line = iterator.next();
-                // TODO Task A: use line to populate the instance variables
+                String[] line = iterator.next().split("\\t");
+                languageToLanguageCode.put(line[0], line[1]);
+                languageCodeToLanguage.put(line[1], line[0]);
             }
 
         } catch (IOException | URISyntaxException ex) {
