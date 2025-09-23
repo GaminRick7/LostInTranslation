@@ -13,7 +13,10 @@ import java.util.Map;
  * This class provides the service of converting country codes to their names and back.
  */
 public class CountryCodeConverter {
-
+    public static void main(String[] args) {
+        CountryCodeConverter converter = new CountryCodeConverter();
+        System.out.println(converter.fromCountry("Canada"));
+    }
     private Map<String, String> countryCodeToCountry = new HashMap<>();
     private Map<String, String> countryToCountryCode = new HashMap<>();
 
@@ -43,7 +46,7 @@ public class CountryCodeConverter {
                 String line = iterator.next();
                 String[] parts = line.split("\t");
                 countryCodeToCountry.put(parts[2].toLowerCase(), parts[0]);
-                countryToCountryCode.put(parts[0], parts[2].toLowerCase());
+                countryToCountryCode.put(parts[0].toLowerCase(), parts[2].toLowerCase());
             }
         } catch (IOException | URISyntaxException ex) {
             throw new RuntimeException(ex);
@@ -68,7 +71,6 @@ public class CountryCodeConverter {
      * @return the 3-letter code of the country
      */
     public String fromCountry(String country) {
-        if (country == null) return null;
         return countryToCountryCode.get(country.toLowerCase());
     }
 
